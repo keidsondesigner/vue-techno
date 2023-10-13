@@ -1,7 +1,8 @@
 const vm = new Vue({
   el: "#app",
   data: {
-    produtos: []
+    produtos: [],
+    produto: false
   },
   filters: {
     formatarMoeda(valor) {
@@ -15,6 +16,22 @@ const vm = new Vue({
         .then(response => {
           this.produtos = response;
         })
+    },
+    getProdutoPorId(id) {
+      fetch(`./api/produtos/${id}/dados.json`)
+        .then(response => response.json())
+        .then(response => {
+          this.produto = response;
+        })
+    },
+    fecharModal(event){
+      console.log("aquiii");
+      console.log(event.target);
+      console.log(event.currentTarget);
+      // if(target === currentTarget) {
+      //   // fechar o modal só quando meu click for na section onde está meu evento;
+      //   this.produto = false;
+      // }
     }
   },
   created() {
