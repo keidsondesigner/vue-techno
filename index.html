@@ -79,6 +79,12 @@
       </div>
     </section>
 
+    <div class="alerta" :class="{ ativo: msgMostrar }">
+      <p class="alerta_mensagem">
+        {{ msgDoItem }}
+      </p>
+    </div>
+
   </div>
 
   <script src="./app.js"></script>

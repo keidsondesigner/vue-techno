@@ -3,7 +3,9 @@ const vm = new Vue({
   data: {
     produtos: [],
     produto: false,
-    carrinhoDeCompras: [], 
+    carrinhoDeCompras: [],
+    msgDoItem: "",
+    msgMostrar: false
   },
   filters: {
     formatarMoeda(valor) {
@@ -53,6 +55,7 @@ const vm = new Vue({
       const { id, nome, preco } = this.produto;
       console.log(id, nome, preco);
       this.carrinhoDeCompras.push({id, nome, preco});
+      this.alertaMsg(`${nome} foi adicionado ao carrinho.`);
 
     },
     removerItemDoCarrinho(index) {
@@ -65,6 +68,16 @@ const vm = new Vue({
         this.carrinhoDeCompras = JSON.parse(window.localStorage.carrinho);
         // transforme "carrinho" que está como "String" para "Array"
       }
+    },
+    alertaMsg(mensagem) {
+      console.log("alertaMsg",mensagem);
+      this.msgDoItem = mensagem;
+      this.msgMostrar = true;
+
+      //ocultar a msg depois 1.5s;
+      setTimeout(() => {
+        this.msgMostrar = false;
+      }, 1500);
     }
   },
   watch: {
