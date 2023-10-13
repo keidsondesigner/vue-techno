@@ -5,7 +5,8 @@ const vm = new Vue({
     produto: false,
     carrinhoDeCompras: [],
     msgDoItem: "",
-    msgMostrar: false
+    msgMostrar: false,
+    carrinhoAtivo: false
   },
   filters: {
     formatarMoeda(valor) {
@@ -45,6 +46,11 @@ const vm = new Vue({
       if(event.target === event.currentTarget) {
         // fechar o modal só quando meu click for na section onde está meu evento;
         this.produto = false;
+      }
+    },
+    clickForaCarrinho(event){
+      if(event.target === event.currentTarget) {
+        this.carrinhoAtivo = false;
       }
     },
     addItemNoCarrinho() {
